@@ -1,0 +1,34 @@
+{
+    "initialWord": {
+        "value": "fetch"
+    },
+    "stages": {
+        "1": {
+            "spaces": [
+                "CorrectPosition",
+                "IncorrectPosition",
+                "NotInWord",
+                "NotInWord",
+                "CorrectPosition"
+            ]
+        },
+        "2": {
+            "spaces": [
+                "CorrectPosition",
+                "NotInWord",
+                "NotInWord",
+                "NotInWord",
+                "NotInWord"
+            ]
+        },
+        "3": {
+            "spaces": [
+                "NotInWord",
+                "NotInWord",
+                "NotInWord",
+                "NotInWord",
+                "NotInWord"
+            ]
+        }
+    }
+}
