@@ -8,6 +8,7 @@ import java.util.stream.StreamSupport;
 
 import com.poketrirx.crosswordlesolver.pub.criteria.CriteriaProcessor;
 import com.poketrirx.crosswordlesolver.pub.criteria.Criterion;
+import com.poketrirx.crosswordlesolver.pub.criteria.UnprocessableCriterionException;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -22,7 +23,7 @@ final class CriteriaProcessorImpl<TData> implements CriteriaProcessor<TData> {
     @Singular
     private final Set<CriterionHandler<TData>> criterionHandlers;
 
-    public Set<TData> process(Iterable<TData> data, Set<Criterion> criteria) {
+    public Set<TData> process(Iterable<TData> data, Set<Criterion> criteria) throws UnprocessableCriterionException {
         Stream<TData> stream = StreamSupport.stream(data.spliterator(), true);
 
         for (Criterion criterion : criteria) {
@@ -33,7 +34,7 @@ final class CriteriaProcessorImpl<TData> implements CriteriaProcessor<TData> {
                     .findFirst();
 
             if (matchingHandler.isEmpty()) {
-                throw new RuntimeException("TODO setup checked exception");
+                throw new UnprocessableCriterionException();
             }
 
             stream = matchingHandler.get().handle(criterion, stream);
